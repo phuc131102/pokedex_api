@@ -10,7 +10,7 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 
 def home(request):
-    count = users_collection.count_documents({})
+    count = gen9_collection.count_documents({})
     response = {"data": {"count": count}, "message": "successful"}
     return JsonResponse(response, status=200)
 
