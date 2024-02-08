@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .connect import users_collection, jobs_collection, cvs_collection, skills_collection
+from .connect import gen9_collection
 from bson.objectid import ObjectId
 from bson import json_util
 from datetime import datetime
@@ -27,7 +27,7 @@ def add_pokemon(request):
         }
 
         if new_user.get("name") and new_user.get("info_en") and new_user.get("info_vn") and new_user.get("image"):            
-            result = users_collection.insert_one(new_user)
+            result = gen9_collection.insert_one(new_user)
 
             if result.inserted_id:
                 return JsonResponse({"message": "Created pokemon successfully"})
