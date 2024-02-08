@@ -26,7 +26,7 @@ def add_pokemon(request):
             "image": data.get("image"),
         }
 
-        if new_user.get("name") and new_user.get("info_en") and new_user.get("info_vn") and new_user.get("image"):            
+        if new_user.get("name") and new_user.get("info_en") and new_user.get("info_vn") and new_user.get("image"):
             result = gen9_collection.insert_one(new_user)
 
             if result.inserted_id:
