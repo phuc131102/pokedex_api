@@ -1,5 +1,5 @@
 from django.urls import path
-from HomeMateApp import views
+from PokedexApp import views
 
 """
 Define path for HTML pages
