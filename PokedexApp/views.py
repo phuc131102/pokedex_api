@@ -36,91 +36,17 @@ def add_pokemon(request):
         
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
-# def sign_in(request):
-#     print(request)
-#     if request.method == "POST":
-#         body = request.body.decode("utf-8")
-#         data = json.loads(body)
-
-#         login = users_collection.find_one({"email": data.get("email"), "pwd": data.get("password")})
-
-#         if login:
-#             return JsonResponse({	
-#                 "message": "Logged in successfully",
-#                 "data": {"id": str(login.get("_id")), "name": login.get("name"), "role":login.get("role")}
-#             })
-
-#         return JsonResponse({"error": "Invalid username or password"}, status=404)
-    
-#     return JsonResponse({'error': 'Invalid request method'}, status=405)
-
-# def get_user_info(request, id):
-#     if request.method == "GET":     
-#         user = users_collection.find_one({"_id": ObjectId(id)})
-        
-#         if user:
-#             return JsonResponse({
-#                 "message": "User found",
-#                 "data": {
-#                     "name": user.get("name"),
-#                     "email": user.get("email"),
-#                     "password": user.get("pwd"),
-#                     "role": user.get("role"),
-#                     "address": user.get("address"),
-#                     "phone_num": user.get("phone_num"),
-#                     "avatar": user.get("avatar")
-#                 }
-#             })
-#         return JsonResponse({"error": "User not found"}, status=404)
-
-#     return JsonResponse({"error": "Invalid request method"}, status=405)
-
-# def update_user_info(request):
-#     if request.method == "POST":
-#         body = request.body.decode("utf-8")
-#         data = json.loads(body)
-#         updated_user = {}
-#         user = users_collection.find_one({"_id": ObjectId(data.get("id"))})
-#         data.pop("id")
-#         if user:
-#             if not data.get("name"):
-#                 data["name"] = user.get("name")
-#             if not data.get("password"):
-#                 data["pwd"] = user.get("pwd")
-#             else:
-#                 data["pwd"] = data.pop("password")
-#             if not data.get("address"):
-#                 data["address"] = user.get("address")
-#             if not data.get("phone_num"):
-#                 data["phone_num"] = user.get("phone_num")
-#             if not data.get("avatar"):
-#                 data["avatar"] = user.get("avatar")
-#             if not data.get("email"):
-#                 data["email"] = user.get("email")
-#             else: 
-#                 email = data.get("email")
-#                 if email != user.get("email"):
-#                     invalid_email = users_collection.find_one({"email": email})
-#                     if invalid_email:
-#                         return JsonResponse({"error": "New email has been used"}, status=409)
-#             change = {"$set": data}
-#             result = users_collection.update_one(user, change)           
-#             if result:
-#                 return JsonResponse({"message": "Updated successfully"})
-#         return JsonResponse({"error": "Invalid user id"}, status=404)
-#     return JsonResponse({"error": "Invalid request method"}, status=405)
-
-# def user(request):
-#     if request.method == "GET":
-#         data = []
-#         data = users_collection.find({})
-#         data = json.loads(json_util.dumps(data))
-#         data_res = []
-#         for ele in data:
-#             data_res += [ele]
-#         response = {"data": data_res, "message": "successful"}
-#         return JsonResponse(response, status=200)
-#     return JsonResponse({'error': 'Invalid request method'}, status=405)
+def gen9(request):
+    if request.method == "GET":
+        data = []
+        data = gen9_collection.find({})
+        data = json.loads(json_util.dumps(data))
+        data_res = []
+        for ele in data:
+            data_res += [ele]
+        response = {"data": data_res, "message": "successful"}
+        return JsonResponse(response, status=200)
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
 
 # def worker(request):
 #     if request.method == "GET":
