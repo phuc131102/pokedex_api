@@ -30,12 +30,12 @@ def add_pokemon(request):
             "hid_ability": data.get("hid_ability"),
             "category": data.get("category"),
             "info_en": data.get("info_en"),
-            "info_vn": data.get("info_vn"),
+            # "info_vn": data.get("info_vn"),
             "image": data.get("image"),
             "icon": data.get("icon"),
         }
 
-        if new_user.get("num") and new_user.get("name") and new_user.get("type1") and new_user.get("type2") and new_user.get("ability") and new_user.get("hid_ability") and new_user.get("category") and new_user.get("info_en") and new_user.get("info_vn") and new_user.get("image") and new_user.get("icon"):
+        if new_user.get("num") and new_user.get("name") and new_user.get("type1") and new_user.get("type2") and new_user.get("ability") and new_user.get("hid_ability") and new_user.get("category") and new_user.get("info_en") and new_user.get("image") and new_user.get("icon"):
             result = gen9_collection.insert_one(new_user)
 
             if result.inserted_id:
