@@ -5,3 +5,4 @@ client = MongoClient(MONGO_URI)
 db = client['Pokedex']
 gen9_collection = db['Gen9']
 type_collection = db['Type']
+ability_collection = db['Ability']

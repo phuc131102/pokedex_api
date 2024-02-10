@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .connect import gen9_collection, type_collection
+from .connect import gen9_collection, type_collection, ability_collection
 from bson.objectid import ObjectId
 from bson import json_util
 from datetime import datetime
@@ -64,6 +64,25 @@ def add_type(request):
         
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
+def add_ability(request):
+    if request.method == "POST":
+        body = request.body.decode("utf-8")
+        data = json.loads(body)
+
+        new_user = {
+            "ability": data.get("ability"),
+        }
+
+        if new_user.get("ability"):
+            result = ability_collection.insert_one(new_user)
+
+            if result.inserted_id:
+                return JsonResponse({"message": "Created ability successfully"})
+
+        return JsonResponse({"error": "Failed to create new ability"}, status=404)
+        
+    return JsonResponse({"error": "Invalid request method"}, status=405)
+
 def gen9(request):
     if request.method == "GET":
         data = []
@@ -80,6 +99,18 @@ def type(request):
     if request.method == "GET":
         data = []
         data = type_collection.find({})
+        data = json.loads(json_util.dumps(data))
+        data_res = []
+        for ele in data:
+            data_res += [ele]
+        response = {"data": data_res, "message": "successful"}
+        return JsonResponse(response, status=200)
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
+
+def ability(request):
+    if request.method == "GET":
+        data = []
+        data = ability_collection.find({})
         data = json.loads(json_util.dumps(data))
         data_res = []
         for ele in data:
