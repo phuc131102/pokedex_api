@@ -19,11 +19,13 @@ def add_pokemon(request):
         body = request.body.decode("utf-8")
         data = json.loads(body)
 
+        type2 = data.get("type2")
+
         new_user = {
             "num": data.get("num"),
             "name": data.get("name"),
             "type1": data.get("type1"),
-            "type2": data.get("type2"),
+            "type2": type2 if type2 else "",
             "ability": data.get("ability"),
             "hid_ability": data.get("hid_ability"),
             "category": data.get("category"),
