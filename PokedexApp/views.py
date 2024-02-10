@@ -74,6 +74,18 @@ def gen9(request):
         return JsonResponse(response, status=200)
     return JsonResponse({'error': 'Invalid request method'}, status=405)
 
+def type(request):
+    if request.method == "GET":
+        data = []
+        data = type_collection.find({})
+        data = json.loads(json_util.dumps(data))
+        data_res = []
+        for ele in data:
+            data_res += [ele]
+        response = {"data": data_res, "message": "successful"}
+        return JsonResponse(response, status=200)
+    return JsonResponse({'error': 'Invalid request method'}, status=405)
+
 # def worker(request):
 #     if request.method == "GET":
 #         data = []
