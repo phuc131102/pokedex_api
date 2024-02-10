@@ -4,3 +4,4 @@ MONGO_URI = str(os.getenv('MONGO_URI'))
 client = MongoClient(MONGO_URI)
 db = client['Pokedex']
 gen9_collection = db['Gen9']
+type_collection = db['Type']

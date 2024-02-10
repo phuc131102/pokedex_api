@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .connect import gen9_collection
+from .connect import gen9_collection, type_collection
 from bson.objectid import ObjectId
 from bson import json_util
 from datetime import datetime
@@ -40,6 +40,25 @@ def add_pokemon(request):
                 return JsonResponse({"message": "Created pokemon successfully"})
 
         return JsonResponse({"error": "Failed to create new pokemon"}, status=404)
+        
+    return JsonResponse({"error": "Invalid request method"}, status=405)
+
+def add_type(request):
+    if request.method == "POST":
+        body = request.body.decode("utf-8")
+        data = json.loads(body)
+
+        new_user = {
+            "type": data.get("type"),
+        }
+
+        if new_user.get("type"):
+            result = type_collection.insert_one(new_user)
+
+            if result.inserted_id:
+                return JsonResponse({"message": "Created type successfully"})
+
+        return JsonResponse({"error": "Failed to create new type"}, status=404)
         
     return JsonResponse({"error": "Invalid request method"}, status=405)
 
