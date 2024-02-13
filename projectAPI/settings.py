@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'PokedexApp.apps.HomemateappConfig'
 ]
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://localhost:3000", "https://pokedex-app-ruddy.vercel.app/"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://localhost:3000", "https://pokedex-app-ruddy.vercel.app"]
 # CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
