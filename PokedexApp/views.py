@@ -71,9 +71,10 @@ def add_ability(request):
 
         new_user = {
             "ability": data.get("ability"),
+            "info": data.get("info"),
         }
 
-        if new_user.get("ability"):
+        if new_user.get("ability") and new_user.get("info"):
             result = ability_collection.insert_one(new_user)
 
             if result.inserted_id:
