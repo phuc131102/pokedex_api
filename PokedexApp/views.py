@@ -20,6 +20,7 @@ def add_pokemon(request):
         data = json.loads(body)
 
         type2 = data.get("type2")
+        ability2 = data.get("ability2")
 
         new_user = {
             "num": data.get("num"),
@@ -27,6 +28,7 @@ def add_pokemon(request):
             "type1": data.get("type1"),
             "type2": type2 if type2 else "",
             "ability": data.get("ability"),
+            "ability2": ability2 if ability2 else "",
             "hid_ability": data.get("hid_ability"),
             "category": data.get("category"),
             "info_en": data.get("info_en"),
