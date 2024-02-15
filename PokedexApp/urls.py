@@ -14,5 +14,5 @@ urlpatterns=[
     path("gen9", views.gen9, name="gen9"),
     path("type", views.type, name="type"),
     path("ability", views.ability, name="ability"),
-    path("get_form", views.get_form, name="get_form"),
+    path("get_form/<str:name>/<str:form1>", views.get_form, name="get_form"),
 ]
