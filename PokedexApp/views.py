@@ -126,33 +126,6 @@ def ability(request):
         return JsonResponse(response, status=200)
     return JsonResponse({'error': 'Invalid request method'}, status=405)
 
-def get_form(request, name, form1):
-    if request.method == "GET":     
-        job = gen9_collection.find_one({"name": name, "form1": form1})
-        
-        if job:
-            return JsonResponse({
-                "message": "Pokemon found",
-                "data": {
-                    "num": job.get("num"),
-                    "name": job.get("name"),
-                    "type1": job.get("type1"),
-                    "type2": job.get("type2"),
-                    "ability": job.get("ability"),
-                    "ability2": job.get("ability2"),
-                    "hid_ability": job.get("hid_ability"),
-                    "category": job.get("category"),
-                    "form1": job.get("form1"),
-                    "form2": job.get("form2"),
-                    "info_en": job.get("info_en"),
-                    "image": job.get("image"),
-                    "icon": job.get("icon"),
-                }
-            })
-        return JsonResponse({"error": "Job not found"}, status=404)
-
-    return JsonResponse({"error": "Invalid request method"}, status=405)
-
 # def worker(request):
 #     if request.method == "GET":
 #         data = []
