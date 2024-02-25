@@ -21,6 +21,7 @@ def add_pokemon(request):
 
         type2 = data.get("type2")
         ability2 = data.get("ability2")
+        hid_ability = data.get("hid_ability")
         form1 = data.get("form1")
         form2 = data.get("form2")
         form3 = data.get("form3")
@@ -32,7 +33,7 @@ def add_pokemon(request):
             "type2": type2 if type2 else "",
             "ability": data.get("ability"),
             "ability2": ability2 if ability2 else "",
-            "hid_ability": data.get("hid_ability"),
+            "hid_ability": hid_ability if hid_ability else "",
             "category": data.get("category"),
             "form1": form1 if form1 else "",
             "form2": form2 if form2 else "",
