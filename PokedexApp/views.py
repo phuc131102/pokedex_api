@@ -100,7 +100,6 @@ def gen9(request):
     if request.method == "GET":
         data = []
         data = gen9_collection.find({})
-        data = json.loads(json_util.dumps(data))
         data_res = []
         for ele in data:
             if "created_at" in ele:
@@ -108,6 +107,7 @@ def gen9(request):
                     ele["new"] = True
                 else:
                     ele["new"] = False
+            ele = json.loads(json_util.dumps(ele))
             data_res += [ele]
         response = {"data": data_res, "message": "successful"}
         return JsonResponse(response, status=200)
