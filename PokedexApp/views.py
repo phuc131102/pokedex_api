@@ -98,20 +98,17 @@ def add_ability(request):
 
 def gen9(request):
     if request.method == "GET":
+        data = []
         data = gen9_collection.find({})
+        data = json.loads(json_util.dumps(data))
         data_res = []
-
-        # Check creation timestamps and add "new" flag
         for ele in data:
-            ele_data = json.loads(json_util.dumps(ele))
-            if "created_at" in ele_data:
-                # Calculate time difference to check if it's new
-                if (datetime.datetime.now() - ele_data["created_at"]).days < 7:
-                    ele_data["new"] = True
+            if "created_at" in ele:
+                if (datetime.datetime.now() - ele["created_at"]).days < 7:
+                    ele["new"] = True
                 else:
-                    ele_data["new"] = False
-            data_res.append(ele_data)
-
+                    ele["new"] = False
+            data_res += [ele]
         response = {"data": data_res, "message": "successful"}
         return JsonResponse(response, status=200)
     return JsonResponse({'error': 'Invalid request method'}, status=405)
