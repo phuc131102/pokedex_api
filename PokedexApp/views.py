@@ -25,10 +25,12 @@ def add_pokemon(request):
         form1 = data.get("form1")
         form2 = data.get("form2")
         form3 = data.get("form3")
+        jpname = data.get("jpname")
 
         new_user = {
             "num": data.get("num"),
             "name": data.get("name"),
+            "jpname": jpname if jpname else null,
             "type1": data.get("type1"),
             "type2": type2 if type2 else "",
             "ability": data.get("ability"),
@@ -41,6 +43,7 @@ def add_pokemon(request):
             "info_en": data.get("info_en"),
             "image": data.get("image"),
             "icon": data.get("icon"),
+            
         }
 
         if new_user.get("num") and new_user.get("name") and new_user.get("type1") and new_user.get("ability") and new_user.get("category") and new_user.get("info_en") and new_user.get("image") and new_user.get("icon"):
