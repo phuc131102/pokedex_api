@@ -6,6 +6,7 @@ from datetime import datetime
 from django.http import JsonResponse
 from django.http import QueryDict
 import json
+import datetime
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -43,7 +44,7 @@ def add_pokemon(request):
             "info_en": data.get("info_en"),
             "image": data.get("image"),
             "icon": data.get("icon"),
-            
+            "created_at": datetime.datetime.now()
         }
 
         if new_user.get("num") and new_user.get("name") and new_user.get("type1") and new_user.get("ability") and new_user.get("category") and new_user.get("info_en") and new_user.get("image") and new_user.get("icon"):
@@ -99,10 +100,17 @@ def gen9(request):
     if request.method == "GET":
         data = []
         data = gen9_collection.find({})
-        data = json.loads(json_util.dumps(data))
+        # data = json.loads(json_util.dumps(data))
         data_res = []
         for ele in data:
-            data_res += [ele]
+            ele_data = json.loads(json_util.dumps(ele))
+            if "created_at" in ele_data:
+                # Calculate time difference to check if it's new
+                if (datetime.datetime.now() - ele_data["created_at"]).days < 7:
+                    ele_data["new"] = True
+                else:
+                    ele_data["new"] = False
+            data_res.append(ele_data)
         response = {"data": data_res, "message": "successful"}
         return JsonResponse(response, status=200)
     return JsonResponse({'error': 'Invalid request method'}, status=405)
