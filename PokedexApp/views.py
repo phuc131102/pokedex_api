@@ -103,7 +103,7 @@ def gen9(request):
         data_res = []
         for ele in data:
             if "created_at" in ele:
-                if (datetime.datetime.now() - ele["created_at"]).days < 7:
+                if (datetime.datetime.now() - ele["created_at"]).days < 3:
                     ele["new"] = True
                 else:
                     ele["new"] = False
