@@ -26,6 +26,7 @@ def add_pokemon(request):
         form1 = data.get("form1")
         form2 = data.get("form2")
         form3 = data.get("form3")
+        form4 = data.get("form4")
         jpname = data.get("jpname")
 
         new_user = {
@@ -41,6 +42,7 @@ def add_pokemon(request):
             "form1": form1 if form1 else "",
             "form2": form2 if form2 else "",
             "form3": form3 if form3 else "",
+            "form4": form4 if form4 else "",
             "info_en": data.get("info_en"),
             "image": data.get("image"),
             "icon": data.get("icon"),
